@@ -2,7 +2,7 @@
   "name": "realize-v2",
   "private": true,
   "scripts": {
-    "build:examples": "lerna bootstrap && npm run build:packages && npm run build:examples-only",
+    "build:examples": "cross-env NODE_ENV=development lerna bootstrap && npm run build:packages && npm run build:examples-only",
     "build:examples-only": "lerna run --parallel --scope example-* build",
     "build:packages": "lerna run --parallel --scope @realize/* build"
   },
@@ -17,6 +17,7 @@
   "dependencies": {
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "cross-env": "^5.2.0",
     "parcel-bundler": "^1.12.3",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
