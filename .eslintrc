@@ -13,7 +13,8 @@
         "plugin:jsx-a11y/recommended"
     ],
     "rules": {
-        "@typescript-eslint/explicit-function-return-type": ["off"]
+        "@typescript-eslint/explicit-function-return-type": ["off"],
+        "@typescript-eslint/no-explicit-any": ["off"]
     },
     "settings": {
         "react": {

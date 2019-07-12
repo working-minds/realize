@@ -8,8 +8,15 @@ const themes = {
     materialui: RealizeMaterialUI,
 };
 
+const defaultFormData = {
+    sku: null,
+    name: null,
+};
+
 const App = () => {
     const [Realize, setRealize] = React.useState(RealizeBootstrap);
+    const [formData, setFormData] = React.useState(defaultFormData);
+    const [items, setItems] = React.useState([]);
 
     return (
         <div>
@@ -29,23 +36,34 @@ const App = () => {
                         </Realize.TableRow>
                     </Realize.TableHead>
                     <Realize.TableBody>
-                        <Realize.TableRow>
-                            <Realize.TableCell>1</Realize.TableCell>
-                            <Realize.TableCell>sku-01</Realize.TableCell>
-                            <Realize.TableCell>Notebook Samsung</Realize.TableCell>
-                        </Realize.TableRow>
-                        <Realize.TableRow>
-                            <Realize.TableCell>2</Realize.TableCell>
-                            <Realize.TableCell>sku-02</Realize.TableCell>
-                            <Realize.TableCell>Macbook</Realize.TableCell>
-                        </Realize.TableRow>
-                        <Realize.TableRow>
-                            <Realize.TableCell>1</Realize.TableCell>
-                            <Realize.TableCell>sku-03</Realize.TableCell>
-                            <Realize.TableCell>Notebook HP</Realize.TableCell>
-                        </Realize.TableRow>
+                        {items.map(item => (
+                            <Realize.TableRow key={item.id}>
+                                <Realize.TableCell>{item.id}</Realize.TableCell>
+                                <Realize.TableCell>{item.sku}</Realize.TableCell>
+                                <Realize.TableCell>{item.name}</Realize.TableCell>
+                            </Realize.TableRow>
+                        ))}
                     </Realize.TableBody>
                 </Realize.Table>
+            </Realize.Shadow>
+            <Realize.Shadow>
+                <form onSubmit={(e) => (e.preventDefault(), setItems([ ...items, { ...formData, id: items.length + 1 } ]), setFormData(defaultFormData))}>
+                    <Realize.Input
+                        placeholder="Product SKU"
+                        value={formData.sku || ""}
+                        required
+                        error={!/^[A-Za-z0-9-]+$/.test(formData.sku)}
+                        onChange={e => setFormData({ ...formData, sku: e.target.value })}
+                    />
+                    <Realize.Input
+                        placeholder="Product Name"
+                        value={formData.name || ""}
+                        required
+                        error={formData.name && formData.name.length < 3}
+                        onChange={e => setFormData({ ...formData, name: e.target.value })}
+                    />
+                    <Realize.Button type="submit">Add</Realize.Button>
+                </form>
             </Realize.Shadow>
         </div>
     );

@@ -21,4 +21,10 @@ export interface ButtonProps {
      * 
      */
     className?: string;
+
+    /**
+     * The type of `button` element.
+     * 
+     */
+    type?: string;
 }
