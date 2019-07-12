@@ -1,0 +1,17 @@
+{
+  "name": "@realize/examples-product-catalogue",
+  "private": true,
+  "scripts": {
+    "start:dev": "parcel serve ./src/index.html"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@realize/core": "^1.0.0",
+    "@realize/theme-materialui": "^1.0.0",
+    "@realize/theme-bootstrap": "^1.0.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6"
+  }
+}

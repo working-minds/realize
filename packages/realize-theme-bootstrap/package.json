@@ -1,0 +1,26 @@
+{
+  "name": "@realize/theme-bootstrap",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start:dev": "tsc -w --preserveWatchOutput"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^1.10.0"
+  },
+  "peerDependencies": {
+    "@realize/core": "^1.0.0",
+    "bootstrap": "^4.3.1",
+    "react": "^16.8.6",
+    "react-bootstrap": "^1.0.0-beta.9"
+  },
+  "devDependencies": {
+    "@realize/core": "^1.0.0",
+    "bootstrap": "^4.3.1",
+    "react-bootstrap": "^1.0.0-beta.9"
+  }
+}

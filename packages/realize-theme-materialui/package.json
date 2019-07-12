@@ -1,0 +1,28 @@
+{
+  "name": "@realize/theme-materialui",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start:dev": "tsc -w --preserveWatchOutput"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "material-icons": "^0.3.1",
+    "tslib": "^1.10.0",
+    "typeface-roboto": "^0.0.54"
+  },
+  "peerDependencies": {
+    "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
+    "@realize/core": "^1.0.0",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@material-ui/core": "^4.2.0",
+    "@material-ui/icons": "^4.2.1",
+    "@realize/core": "^1.0.0"
+  }
+}

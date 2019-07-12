@@ -1,0 +1,15 @@
+{
+  "name": "@realize/core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start:dev": "tsc -w --preserveWatchOutput"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "tslib": "^1.10.0"
+  }
+}
