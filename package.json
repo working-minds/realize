@@ -2,7 +2,7 @@
   "name": "realize-v2",
   "private": true,
   "scripts": {
-    "build:examples": "npm run build:packages && npm run build:examples-only",
+    "build:examples": "lerna bootstrap && npm run build:packages && npm run build:examples-only",
     "build:examples-only": "lerna run --parallel --scope example-* build",
     "build:packages": "lerna run --parallel --scope @realize/* build"
   },
