@@ -1,8 +1,9 @@
 {
-  "name": "@realize/examples-product-catalogue",
+  "name": "example-product-catalogue",
   "private": true,
   "scripts": {
-    "start:dev": "parcel serve ./src/index.html"
+    "start:dev": "parcel serve ./src/index.html",
+    "build": "parcel build ./src/index.html --out-dir ../../dist/examples/product-catalogue --public-url /examples/product-catalogue"
   },
   "keywords": [],
   "author": "",

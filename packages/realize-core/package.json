@@ -4,7 +4,8 @@
   "description": "",
   "main": "./lib/index.js",
   "scripts": {
-    "start:dev": "tsc -w --preserveWatchOutput"
+    "start:dev": "tsc -w --preserveWatchOutput",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",

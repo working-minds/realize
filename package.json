@@ -1,6 +1,11 @@
 {
   "name": "realize-v2",
   "private": true,
+  "scripts": {
+    "build:examples": "npm run build:packages && npm run build:examples-only",
+    "build:examples-only": "lerna run --parallel --scope example-* build",
+    "build:packages": "lerna run --parallel --scope @realize/* build"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
