@@ -1,71 +1,47 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import * as RealizeBootstrap from "@realize/theme-bootstrap";
-import * as RealizeMaterialUI from "@realize/theme-materialui";
+import { BrowserRouter as Router } from "react-router-dom";
+import * as Realize from "./shared/realize";
+import { ProductsModule } from "./products";
 
-const themes = {
-    bootstrap: RealizeBootstrap,
-    materialui: RealizeMaterialUI,
-};
+type themes = "bootstrap" | "materialui";
 
-const defaultFormData = {
-    sku: null,
-    name: null,
+const storage = {
+    usePersistedState<T>(name, initialState: T = null): [T, React.Dispatch<React.SetStateAction<T>>] {
+        const [data, setData] = React.useState<T>(() => {
+            const data = JSON.parse(localStorage.getItem(name) || JSON.stringify(initialState));
+            localStorage.setItem(name, JSON.stringify(data));
+            return data;
+        });
+
+        return [
+            data,
+            (newData) => {
+                localStorage.setItem(name, JSON.stringify(newData));
+                return setData(newData);
+            },
+        ];
+    }
 };
 
 const App = () => {
-    const [Realize, setRealize] = React.useState(RealizeBootstrap);
-    const [formData, setFormData] = React.useState(defaultFormData);
-    const [items, setItems] = React.useState([]);
+    const [theme, setTheme] = storage.usePersistedState<themes>("theme", "bootstrap");
+    const onChange = v => setTheme((v.target as HTMLSelectElement).value as themes);
+    // @ts-ignore
+    const baseUrl = new URL(document.getElementsByTagName("base")[0].href);
 
     return (
-        <div>
-            <div style={{ margin: '10px' }}>
-                <select onInput={v => setRealize(themes[(v.target as HTMLSelectElement).value])}>
-                    <option value="bootstrap">Bootstrap</option>
-                    <option value="materialui">MaterialUI</option>
-                </select>
-            </div>
-            <Realize.Shadow>
-                <Realize.Table size="medium">
-                    <Realize.TableHead>
-                        <Realize.TableRow>
-                            <Realize.TableCell>ID</Realize.TableCell>
-                            <Realize.TableCell>SKU</Realize.TableCell>
-                            <Realize.TableCell>NAME</Realize.TableCell>
-                        </Realize.TableRow>
-                    </Realize.TableHead>
-                    <Realize.TableBody>
-                        {items.map(item => (
-                            <Realize.TableRow key={item.id}>
-                                <Realize.TableCell>{item.id}</Realize.TableCell>
-                                <Realize.TableCell>{item.sku}</Realize.TableCell>
-                                <Realize.TableCell>{item.name}</Realize.TableCell>
-                            </Realize.TableRow>
-                        ))}
-                    </Realize.TableBody>
-                </Realize.Table>
-            </Realize.Shadow>
-            <Realize.Shadow>
-                <form onSubmit={(e) => (e.preventDefault(), setItems([ ...items, { ...formData, id: items.length + 1 } ]), setFormData(defaultFormData))}>
-                    <Realize.Input
-                        placeholder="Product SKU"
-                        value={formData.sku || ""}
-                        required
-                        error={!/^[A-Za-z0-9-]+$/.test(formData.sku)}
-                        onChange={e => setFormData({ ...formData, sku: e.target.value })}
-                    />
-                    <Realize.Input
-                        placeholder="Product Name"
-                        value={formData.name || ""}
-                        required
-                        error={formData.name && formData.name.length < 3}
-                        onChange={e => setFormData({ ...formData, name: e.target.value })}
-                    />
-                    <Realize.Button type="submit">Add</Realize.Button>
-                </form>
-            </Realize.Shadow>
-        </div>
+        <Router basename={baseUrl.pathname}>
+            <Realize.Realize themeName={theme}>
+                <div style={{ margin: '10px' }}>
+                    <select value={theme} onChange={onChange} onBlur={onChange}>
+                        <option value="bootstrap">Bootstrap</option>
+                        <option value="materialui">MaterialUI</option>
+                    </select>
+                </div>
+                <ProductsModule storage={storage} />
+            </Realize.Realize>
+        </Router>
     );
 };
 

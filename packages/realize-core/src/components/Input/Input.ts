@@ -63,5 +63,5 @@ export interface InputProps {
      * Callback fired when the value is changed.
      * 
      */
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }

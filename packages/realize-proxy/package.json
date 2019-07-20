@@ -1,0 +1,20 @@
+{
+  "name": "@realize/proxy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "scripts": {
+    "start:dev": "tsc -w --preserveWatchOutput",
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "peerDependencies": {
+    "@realize/core": "^1.0.0",
+    "react": "^16.8.6"
+  },
+  "devDependencies": {
+    "@realize/core": "^1.0.0"
+  }
+}

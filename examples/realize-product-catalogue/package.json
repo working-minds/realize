@@ -3,16 +3,22 @@
   "private": true,
   "scripts": {
     "start:dev": "parcel serve ./src/index.html",
-    "build": "parcel build ./src/index.html --out-dir ../../dist/examples/product-catalogue --public-url /examples/product-catalogue"
+    "build": "cross-env BASE_URL=/examples/product-catalog parcel build ./src/index.html --out-dir ../../dist/examples/product-catalog --public-url /examples/product-catalog"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "dependencies": {
     "@realize/core": "^1.0.0",
+    "@realize/proxy": "^1.0.0",
     "@realize/theme-materialui": "^1.0.0",
     "@realize/theme-bootstrap": "^1.0.0",
     "react": "^16.8.6",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-router": "^5.0.1",
+    "react-router-dom": "^5.0.1"
+  },
+  "devDependencies": {
+    "posthtml-expressions": "^1.1.1"
   }
 }
